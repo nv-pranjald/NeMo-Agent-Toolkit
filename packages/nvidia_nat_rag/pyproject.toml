@@ -23,6 +23,7 @@ dependencies = [
   "langgraph>=0.2",  # Required for react_agent workflow
   "langchain_classic",
   "nvidia-nat~=1.5",
+  "nvidia-nat-langchain~=1.5",
   "nvidia-rag[rag]~=2.4",
 ]
 requires-python = ">=3.11,<3.14"
@@ -51,6 +52,7 @@ config-settings = { editable_mode = "compat" }
 
 [tool.uv.sources]
 nvidia-nat = { workspace = true }
+nvidia-nat-langchain = { workspace = true }
 nvidia-rag = { path = "vendor/nvidia_rag-2.4.0.dev0-py3-none-any.whl" }
 
 

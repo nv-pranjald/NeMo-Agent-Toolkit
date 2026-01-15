@@ -11,7 +11,7 @@ functions:
     _type: nvidia_rag_query
     config_file: config.yaml  # Path to nvidia_rag config file
     collection_names: ["test_library"]
-    vdb_endpoint: "http://localhost:19530"
+    vdb_endpoint: "./packages/nvidia_nat_rag/milvus.db"
     use_knowledge_base: true
     # embedding_endpoint: "localhost:9080"  # Uncomment for on-prem embeddings
 
@@ -20,7 +20,7 @@ functions:
     _type: nvidia_rag_search
     config_file: config.yaml
     collection_names: ["test_library"]
-    vdb_endpoint: "http://localhost:19530"
+    vdb_endpoint: "./packages/nvidia_nat_rag/milvus.db"
     reranker_top_k: 3  # Reduced to avoid token limit issues with large documents
     vdb_top_k: 20
 

@@ -28,7 +28,6 @@ from nat.data_models.function import FunctionBaseConfig
 
 logger = logging.getLogger(__name__)
 
-
 class NvidiaRAGQueryConfig(FunctionBaseConfig, name="nvidia_rag_query"):
     """
     Tool that queries documents using NVIDIA RAG.
@@ -64,8 +63,10 @@ async def nvidia_rag_query(config: NvidiaRAGQueryConfig, builder: Builder):
     from nvidia_rag import NvidiaRAG
     from nvidia_rag.utils.configuration import NvidiaRAGConfig
 
-    # Initialize the RAG client
-    rag_config = NvidiaRAGConfig.from_yaml(config.config_file)
+    # Initialize RAG config - use defaults and override with NAT config values
+    rag_config = NvidiaRAGConfig()
+    rag_config.vector_store.url = config.vdb_endpoint
+    logger.info(f"Vector store URL: {rag_config.vector_store.url}")
     rag = NvidiaRAG(config=rag_config)
 
     async def _nvidia_rag_query(query: str) -> str:
@@ -162,8 +163,10 @@ async def nvidia_rag_search(config: NvidiaRAGSearchConfig, builder: Builder):
     from nvidia_rag import NvidiaRAG
     from nvidia_rag.utils.configuration import NvidiaRAGConfig
 
-    # Initialize the RAG client
-    rag_config = NvidiaRAGConfig.from_yaml(config.config_file)
+    # Initialize RAG config - use defaults and override with NAT config values
+    rag_config = NvidiaRAGConfig()
+    rag_config.vector_store.url = config.vdb_endpoint
+    logger.info(f"Vector store URL: {rag_config.vector_store.url}")
     rag = NvidiaRAG(config=rag_config)
 
     async def _nvidia_rag_search(query: str) -> str:
